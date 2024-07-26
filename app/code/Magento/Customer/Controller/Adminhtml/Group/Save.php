@@ -91,6 +91,14 @@ class Save extends \Magento\Customer\Controller\Adminhtml\Group implements HttpP
                 $customerGroup->setCode(!empty($customerGroupCode) ? $customerGroupCode : null);
                 $customerGroup->setTaxClassId($taxClass);
 
+                $isDistributor = (int)$this->getRequest()->getParam('is_distributor');
+                $customerGroup->setIsDistributor($isDistributor);
+
+
+                var_dump($isDistributor);
+                var_dump("hola");
+                var_dump($customerGroup->getIsDistributor());
+                die();
                 $this->groupRepository->save($customerGroup);
 
                 $this->messageManager->addSuccessMessage(__('You saved the customer group.'));

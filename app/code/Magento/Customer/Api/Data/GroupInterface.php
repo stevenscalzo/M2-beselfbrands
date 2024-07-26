@@ -102,4 +102,8 @@ interface GroupInterface extends ExtensibleDataInterface
      * @return $this
      */
     public function setExtensionAttributes(\Magento\Customer\Api\Data\GroupExtensionInterface $extensionAttributes);
+
+    public function getIsDistributor();
+
+    public function setIsDistributor($isDistributor);
 }

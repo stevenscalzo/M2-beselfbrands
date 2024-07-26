@@ -116,4 +116,14 @@ class Group extends \Magento\Framework\Api\AbstractExtensibleObject implements
     {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
+
+    public function getIsDistributor()
+    {
+        return $this->_get('is_distributor');
+    }
+
+    public function setIsDistributor($isDistributor)
+    {
+        return $this->setData('is_distributor', $isDistributor);
+    }
 }
