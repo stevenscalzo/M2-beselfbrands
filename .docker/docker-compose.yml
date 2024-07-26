@@ -1,0 +1,85 @@
+version: '3'
+services:
+  beselfbrands_php:
+    container_name: beselfbrands_php
+    build: Dockerfiles/php
+    volumes:
+      - ./../:/var/www/html
+      - ./ssh-key/:/root/.ssh/
+    networks:
+      - appnet
+    expose:
+      - 9000
+    depends_on:
+      - beselfbrands_db
+
+  beselfbrands_nginx:
+    container_name: beselfbrands_nginx
+    build: Dockerfiles/nginx
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./../:/var/www/html
+    networks:
+      - appnet
+    depends_on:
+      - beselfbrands_php
+
+  beselfbrands_db:
+    container_name: beselfbrands_db
+    build: Dockerfiles/db
+#    image: mysql:8
+#    image: mariadb:10.4
+#    image: percona:5.6.48
+    volumes:
+      - ./../db_data:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: magento
+      MYSQL_USER: magento
+      MYSQL_PASSWORD: magento
+    networks:
+      - appnet
+
+  beselfbrands_sessions:
+    container_name: beselfbrands_sessions_redis
+    image: redis:3.2
+    networks:
+      - appnet
+
+  beselfbrands_cache:
+    container_name: beselfbrands_cache
+    build: Dockerfiles/redis-volatile
+    networks:
+      - appnet
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.9.3
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - "discovery.type=single-node"
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    networks:
+      - appnet
+
+  beselfbrands-rabbitmq:
+    image: rabbitmq:3.7-management-alpine
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      - beselfbrands-rabbitmqdata:/var/lib/rabbitmq
+    networks:
+      - appnet
+
+volumes:
+  beselfbrands-rabbitmqdata:
+
+networks:
+  appnet:
+    driver: "bridge"
