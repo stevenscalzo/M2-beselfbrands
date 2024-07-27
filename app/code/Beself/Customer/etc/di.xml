@@ -10,4 +10,9 @@
         <plugin name="beself_customer_group_repository_plugin"
                 type="Beself\Customer\Plugin\GroupRepositoryPlugin" />
     </type>
+
+    <type name="Magento\Framework\Reflection\DataObjectProcessor">
+        <plugin name="change_data_object_type_plugin"
+                type="Beself\Customer\Plugin\DataObjectProcessorPlugin" />
+    </type>
 </config>
