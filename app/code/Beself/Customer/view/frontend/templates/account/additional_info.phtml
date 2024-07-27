@@ -1,0 +1,23 @@
+<?php
+
+/** @var \Beself\Customer\Block\Account\AdditionalInfo $block */
+
+$data = $block->getAdditionalInfo();
+?>
+<div class="block block-dashboard-info block-additional-info">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Additional Information')) ?></strong></div>
+    <div class="block-content">
+        <div class="box box-information">
+            <ul>
+                <li><?= $data['distributor']; ?></li>
+
+                    <li>
+                        <span class="text"><?= $data['type']['text']?></span>
+                        <?php if ($data['type']['hasType']) : ?>
+                            <span class="type"><?= $data['type']['type']?></span>
+                        <?php endif; ?>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>

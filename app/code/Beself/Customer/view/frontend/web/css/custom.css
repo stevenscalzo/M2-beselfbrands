@@ -1,0 +1,11 @@
+.block-additional-info ul {
+    list-style: none;
+}
+
+.block-additional-info .text {
+    font-weight: bold;
+}
+
+.block-additional-info .type {
+    text-transform: capitalize;
+}
