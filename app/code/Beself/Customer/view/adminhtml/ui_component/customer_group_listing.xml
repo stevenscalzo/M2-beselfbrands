@@ -1,0 +1,40 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/ui_configuration.xsd">
+    <columns name="customer_group_columns">
+        <column name="customer_group_id">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="customer_group_code">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Group</label>
+            </settings>
+        </column>
+        <column name="tax_class_id" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <options class="Magento\Tax\Model\TaxClass\Source\Customer"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+                <label translate="true">Tax Class</label>
+            </settings>
+        </column>
+
+        <column name="is_distributor" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Is Distributor</label>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+        <actionsColumn name="actions" class="Magento\Customer\Ui\Component\Listing\Column\GroupActions">
+            <settings>
+                <indexField>customer_group_id</indexField>
+            </settings>
+        </actionsColumn>
+    </columns>
+</listing>

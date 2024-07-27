@@ -10,6 +10,4 @@
         <plugin name="beself_customer_group_repository_plugin"
                 type="Beself\Customer\Plugin\GroupRepositoryPlugin" />
     </type>
-
-
 </config>

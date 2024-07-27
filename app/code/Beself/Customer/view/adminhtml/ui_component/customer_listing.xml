@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <columns name="customer_columns" class="Magento\Customer\Ui\Component\Listing\Columns">
+        <!-- update columns -->
+        <column name="name" sortOrder="21" />
+
+        <column name="email" sortOrder="23" />
+
+        <column name="group_id" sortOrder="29" />
+
+        <column name="preferred_product_type" sortOrder="40">
+            <settings>
+                <label translate="true">Preferred Product Type</label>
+            </settings>
+        </column>
+        <column name="created_at" sortOrder="100" />
+    </columns>
+</listing>
