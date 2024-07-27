@@ -59,3 +59,6 @@ delete-static-content:
 
 only-static-content-deploy:
 	@docker exec $(PHP_CONTAINER) bash -c 'php bin/magento setup:static-content:deploy -f'
+
+instalacion-magento:
+	@docker exec -it $(PHP_CONTAINER) bash -c 'php bin/magento setup:install --base-url=http://localhost --db-host=beselfbrands_db --db-name=magento --db-user=magento --db-password=magento --admin-firstname=admin --admin-lastname=admin --admin-email=admin@admin.com --admin-user=admin --admin-password=admin123 --language=en_US --currency=USD --timezone=America/Chicago --use-rewrites=1 --search-engine=elasticsearch7 \--elasticsearch-port=9200 --elasticsearch-host=elasticsearch --elasticsearch-index-prefix=es-host.example.com --elasticsearch-timeout=15'
